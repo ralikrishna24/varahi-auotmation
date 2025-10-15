@@ -28,15 +28,23 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/95 backdrop-blur-md shadow-md" : "bg-transparent"
+        isScrolled
+          ? "bg-background/95 backdrop-blur-md shadow-md"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3">
-            <img src={varahiLogo} alt="Varahi Automations Logo" className="h-40 w-35" />
-            <span className="font-bold text-xl text-foreground">Varahi Automations</span>
+            <img
+              src={varahiLogo}
+              alt="Varahi Automations Logo"
+              className="h-40 w-35"
+            />
+            <span className="font-bold text-xl text-foreground">
+              Varahi Automations
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -46,14 +54,22 @@ const Navbar = () => {
                 key={link.to}
                 to={link.to}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location.pathname === link.to ? "text-primary" : "text-foreground"
+                  location.pathname === link.to
+                    ? "text-primary"
+                    : "text-foreground"
                 }`}
               >
                 {link.label}
               </Link>
             ))}
             <Button asChild size="lg" className="bg-gradient-accent">
-              <Link to="/contact">Enroll Now</Link>
+              <a
+                href="https://forms.gle/dp7qUBzzsiYsAFsE6"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Enroll Now
+              </a>
             </Button>
           </div>
 
@@ -79,7 +95,9 @@ const Navbar = () => {
                   key={link.to}
                   to={link.to}
                   className={`text-sm font-medium transition-colors hover:text-primary ${
-                    location.pathname === link.to ? "text-primary" : "text-foreground"
+                    location.pathname === link.to
+                      ? "text-primary"
+                      : "text-foreground"
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >

@@ -10,7 +10,8 @@ const slides = [
   {
     image: heroAutomation,
     title: "Master Industrial Automation",
-    subtitle: "Shape the future with cutting-edge PLC, SCADA, and robotics training",
+    subtitle:
+      "Shape the future with cutting-edge PLC, SCADA, and robotics training",
     cta: "Start Your Journey",
   },
   {
@@ -77,8 +78,18 @@ const HeroSlider = () => {
                 <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8">
                   {slide.subtitle}
                 </p>
-                <Button asChild size="lg" className="bg-accent hover:bg-accent/90 text-lg px-8 py-6">
-                  <Link to="/contact">{slide.cta}</Link>
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-lg px-8 py-6"
+                >
+                  <a
+                    href="https://forms.gle/dp7qUBzzsiYsAFsE6"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Enroll Now
+                  </a>
                 </Button>
               </div>
             </div>

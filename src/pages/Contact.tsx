@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,61 +17,91 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
+// ⚠️ IMPORTANT: REPLACE THIS PLACEHOLDER WITH YOUR ACTUAL WEB3FORMS ACCESS KEY!
+const ACCESS_KEY = "85d32ece-4945-4616-bbd1-a9ffb1e871c0"; 
+
 const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading button
+
+  // Initial state setup
+  const initialFormData = {
     name: "",
     email: "",
     phone: "",
     course: "",
     mode: "",
     message: "",
-  });
+  };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const [formData, setFormData] = useState(initialFormData);
 
-  try {
-    const res = await fetch("https://script.google.com/macros/s/AKfycbzUFkKzs_uhwf1p6K79FYG0H46SaboIpgiCyWELL06ojRJOniI-X5FW0ZOI1FAPExdF/exec", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+  // Unified change handler for Input and Textarea
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  }, []);
 
-    const json = await res.json();
+  // Select component change handler
+  const handleSelectChange = useCallback((field: keyof typeof initialFormData, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  }, []);
 
-    if (json.result === "success") {
-      toast({
-        title: "Message Sent!",
-        description: "We'll get back to you within 24 hours.",
-      });
+    const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
 
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        course: "",
-        mode: "no-cors",
-        message: "",
-      });
-    } else {
-      toast({
-        title: "Submission Failed",
-        description: json.message || "Please try again later.",
-      });
+    // 1. Create a FormData API object (renamed to submissionData to avoid conflict)
+    const submissionData = new FormData();
+
+    // 2. Append the ACCESS_KEY first
+    submissionData.append("access_key", ACCESS_KEY);
+    
+    // 3. Append data from the React STATE OBJECT (formData from useState)
+    //    We iterate through the state object keys and append the values.
+    submissionData.append("name", formData.name);
+    submissionData.append("email", formData.email);
+    submissionData.append("phone", formData.phone);
+    submissionData.append("course", formData.course);
+    submissionData.append("mode", formData.mode);
+    submissionData.append("message", formData.message);
+    
+    // Optional custom subject line
+    submissionData.append("subject", `New Course Inquiry: ${formData.course || 'General'}`);
+
+
+    try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            // CRITICAL: Pass the new FormData object here
+            body: submissionData, 
+        });
+
+        const json = await res.json();
+
+        if (json.success) {
+            toast({
+                title: "Message Sent Successfully!",
+                description: "Your inquiry has been received. We will contact you soon.",
+            });
+            setFormData(initialFormData); // Reset form
+
+        } else {
+            toast({
+                title: "Submission Failed",
+                description: json.message || "An error occurred. Check your ACCESS_KEY.",
+            });
+        }
+    } catch (error) {
+        console.error("Submission Error:", error);
+        toast({
+            title: "Network Error",
+            description: "Could not connect to the form service. Please try again later.",
+        });
+    } finally {
+        setIsSubmitting(false);
     }
-  } catch (error) {
-    console.error(error);
-    toast({
-      title: "Network Error",
-      description: "Unable to submit form. Please try again later.",
-    });
-  }
 };
-
 
   return (
     <div className="min-h-screen">
@@ -113,9 +143,7 @@ const Contact = () => {
                         type="text"
                         required
                         value={formData.name}
-                        onChange={(e) =>
-                          setFormData({ ...formData, name: e.target.value })
-                        }
+                        onChange={handleChange}
                         placeholder="Your Name"
                       />
                     </div>
@@ -132,9 +160,7 @@ const Contact = () => {
                         type="email"
                         required
                         value={formData.email}
-                        onChange={(e) =>
-                          setFormData({ ...formData, email: e.target.value })
-                        }
+                        onChange={handleChange}
                         placeholder="your.email@example.com"
                       />
                     </div>
@@ -151,9 +177,7 @@ const Contact = () => {
                         type="tel"
                         required
                         value={formData.phone}
-                        onChange={(e) =>
-                          setFormData({ ...formData, phone: e.target.value })
-                        }
+                        onChange={handleChange}
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
@@ -168,7 +192,7 @@ const Contact = () => {
                       <Select
                         value={formData.course}
                         onValueChange={(value) =>
-                          setFormData({ ...formData, course: value })
+                          handleSelectChange("course", value)
                         }
                       >
                         <SelectTrigger>
@@ -208,7 +232,7 @@ const Contact = () => {
                       <Select
                         value={formData.mode}
                         onValueChange={(value) =>
-                          setFormData({ ...formData, mode: value })
+                          handleSelectChange("mode", value)
                         }
                       >
                         <SelectTrigger>
@@ -234,9 +258,7 @@ const Contact = () => {
                       <Textarea
                         id="message"
                         value={formData.message}
-                        onChange={(e) =>
-                          setFormData({ ...formData, message: e.target.value })
-                        }
+                        onChange={handleChange}
                         placeholder="Tell us about your goals and questions..."
                         rows={4}
                       />
@@ -245,8 +267,9 @@ const Contact = () => {
                     <Button
                       type="submit"
                       className="w-full bg-gradient-accent text-lg py-6"
+                      disabled={isSubmitting}
                     >
-                      Send Message
+                      {isSubmitting ? "Sending..." : "Send Message"}
                     </Button>
                   </form>
                 </CardContent>
@@ -269,9 +292,9 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-1">Visit Us</h3>
                         <p className="text-muted-foreground">
-                          3/962 2b2,1st f loor <br />
+                          3/962 2b2, 1st floor <br />
                           Tadipatri Block Road/Street/Lane G.v.p State City
-                           Tadipatri colony
+                          Tadipatri colony
                           <br />
                           ANDHRA PRADESH District ANANTHAPUR , Pin 515411
                         </p>
@@ -289,9 +312,9 @@ const Contact = () => {
                       <div>
                         <h3 className="font-semibold text-lg mb-1">Call Us</h3>
                         <p className="text-muted-foreground">
-                          +91  9392476382
+                          +91 9392476382
                           <br />
-                          +91  9392476382
+                          +91 9392476382
                         </p>
                       </div>
                     </div>
