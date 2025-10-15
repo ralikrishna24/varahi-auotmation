@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import HeroSlider from "@/components/HeroSlider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import siemens from "../assets/siemens.png";
+import siemens from "../assets/SIEMENS.png";
 import abb from "../assets/ABB.png";
 import schneider from "../assets/SCHNEIDER ELECTRIC.png";
 import rockwell from "../assets/ROCKWELL AUTOMATION.png";
