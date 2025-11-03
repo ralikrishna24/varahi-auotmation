@@ -184,7 +184,7 @@ const Courses = () => {
                     </ul>
                   </CardContent>
                   <CardFooter className="pt-0 pb-6">
-                    <Button asChild className="w-full bg-gradient-accent">
+                    {/* <Button asChild className="w-full bg-gradient-accent">
                       <a
                         href="https://forms.gle/dp7qUBzzsiYsAFsE6"
                         target="_blank"
@@ -192,7 +192,7 @@ const Courses = () => {
                       >
                         Enroll Now
                       </a>
-                    </Button>
+                    </Button> */}
                   </CardFooter>
                 </Card>
               ))}

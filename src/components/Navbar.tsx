@@ -22,6 +22,7 @@ const Navbar = () => {
     { to: "/about", label: "About Us" },
     { to: "/courses", label: "Courses" },
     { to: "/gallery", label: "Gallery" },
+    { to: "/placementpage", label: "Placements" },
     { to: "/contact", label: "Contact" },
   ];
 
@@ -30,7 +31,7 @@ const Navbar = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-background/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+          : "bg-background/95 backdrop-blur-md shadow-md"
       }`}
     >
       <div className="container mx-auto px-4">
@@ -43,7 +44,7 @@ const Navbar = () => {
               className="h-40 w-35"
             />
             <span className="font-bold text-xl text-foreground">
-              Varahi Automations
+              Varahi Automation
             </span>
           </Link>
 

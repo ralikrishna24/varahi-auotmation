@@ -3,6 +3,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import founder from "../assets/founder.png";
+import vision from "../assets/vision.png";
+import mission from "../assets/mission.png";
 const About = () => {
   return (
     <div className="min-h-screen">
@@ -44,37 +46,46 @@ const About = () => {
       {/* Vision & Mission */}
       <section className="py-20 bg-secondary">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Card className="border-none shadow-lg">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mb-4">
-                  <Eye className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-                <p className="text-muted-foreground">
-                  To be the world's leading automation training institute,
-                  recognized for producing highly skilled professionals who
-                  drive innovation and excellence in industrial automation
-                  globally.
-                </p>
-              </CardContent>
-            </Card>
+         <div className="max-w-6xl mx-auto py-16 px-4 grid gap-12 md:grid-cols-2">
+  {/* Vision Card */}
+  <Card className="border-none shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col md:flex-row items-center rounded-2xl overflow-hidden">
+    {/* Left/Side Image */}
+    <img
+      src={vision}
+      alt="Automation Vision"
+      className="w-full md:w-1/2 h-64 object-cover rounded-t-2xl md:rounded-l-2xl md:rounded-tr-none transition-transform duration-500 hover:scale-105"
+    />
+    {/* Text Content */}
+    <CardContent className="p-8 md:w-1/2 text-center md:text-left">
+      <h3 className="text-3xl font-semibold mb-4 text-gray-800">Our Vision</h3>
+      <p className="text-gray-700 leading-relaxed">
+        To be the global hub of industrial automation education, shaping the 
+        next generation of engineers who innovate and advance the future of 
+        smart industries.
+      </p>
+    </CardContent>
+  </Card>
 
-            <Card className="border-none shadow-lg">
-              <CardContent className="pt-8 pb-8">
-                <div className="w-16 h-16 bg-gradient-hero rounded-full flex items-center justify-center mb-4">
-                  <Target className="h-8 w-8 text-primary-foreground" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-                <p className="text-muted-foreground">
-                  To provide world-class automation training that combines
-                  theoretical knowledge with practical expertise, empowering
-                  students to excel in their careers and contribute meaningfully
-                  to the industry.
-                </p>
-              </CardContent>
-            </Card>
-          </div>
+  {/* Mission Card */}
+  <Card className="border-none shadow-lg hover:shadow-2xl transition-shadow duration-300 flex flex-col md:flex-row-reverse items-center rounded-2xl overflow-hidden">
+    {/* Right/Side Image */}
+    <img
+      src={mission}
+      alt="Automation Mission"
+      className="w-full md:w-1/2 h-64 object-cover rounded-t-2xl md:rounded-r-2xl md:rounded-bl-none transition-transform duration-500 hover:scale-105"
+    />
+    {/* Text Content */}
+    <CardContent className="p-8 md:w-1/2 text-center md:text-left">
+      <h3 className="text-3xl font-semibold mb-4 text-gray-800">Our Mission</h3>
+      <p className="text-gray-700 leading-relaxed">
+        To deliver hands-on, industry-relevant automation training that bridges 
+        the gap between academia and real-world applications — nurturing engineers 
+        who shape the future of intelligent systems.
+      </p>
+    </CardContent>
+  </Card>
+</div>
+
         </div>
       </section>
 
@@ -140,17 +151,13 @@ const About = () => {
                       <img
                         src={founder} // imported image
                         alt="Siva Lingamiayya"
-                        className="h-full w-full object-cover"
+                        className="w-40 h-35 object-cover rounded-full transition-transform duration-500 hover:scale-110"
                       />
-
-                     
                     </div>
                     <h3 className="text-2xl font-bold mb-2">
                       Siva Lingamiayya
                     </h3>
-                    <p className="text-primary font-semibold">
-                      Founder & Chief Trainer
-                    </p>
+                    <p className="text-primary font-semibold">Chief Trainer</p>
                   </div>
 
                   <div className="md:col-span-2 space-y-4">
@@ -160,10 +167,9 @@ const About = () => {
                         <span>Experienced Tech Professional</span>
                       </h4>
                       <p className="text-muted-foreground">
-                        With over 15 years of hands-on experience in industrial
-                        automation, Siva has worked on complex projects across
-                        multiple industries, bringing real-world expertise to
-                        the classroom.
+                        Hands-on experience in industrial automation, Siva has
+                        worked on complex projects across multiple industries,
+                        bringing real-world expertise to the classroom.
                       </p>
                     </div>
 

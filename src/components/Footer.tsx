@@ -52,11 +52,13 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-start space-x-2 text-sm text-primary-foreground/80">
                 <MapPin className="h-5 w-5 text-accent flex-shrink-0" />
-                <span> 3/962 2b2,1st f loor <br />
-                          Tadipatri Block Road/Street/Lane G.v.p State City
-                           Tadipatri colony
+                <span> 3/962 2b2,1st floor <br />
+                          G.v.p colony 
+                           Tadipatri City
+                           District ANANTHAPUR
+                            Pin 515411
                           <br />
-                          ANDHRA PRADESH District ANANTHAPUR , Pin 515411</span>
+                          ANDHRA PRADESH State</span>
               </li>
               <li className="flex items-center space-x-2 text-sm text-primary-foreground/80">
                 <Phone className="h-5 w-5 text-accent" />

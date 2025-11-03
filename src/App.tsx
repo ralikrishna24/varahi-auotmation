@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Courses from "./pages/Courses";
 import Gallery from "./pages/Gallery";
+import PlacementPage from "./pages/Placements"; 
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -23,6 +24,7 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/gallery" element={<Gallery />} />
+          <Route path="/placementpage" element={<PlacementPage />} />
           <Route path="/contact" element={<Contact />} />
           {/* <Route path="/https://forms.gle/dp7qUBzzsiYsAFsE6" element={<Form />} /> */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

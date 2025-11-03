@@ -5,13 +5,12 @@ import { Link } from "react-router-dom";
 import HeroSlider from "@/components/HeroSlider";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import siemens from "../assets/SIEMENS.png";
+import siemens from "../assets/delta.png";
 import abb from "../assets/ABB.png";
-import schneider from "../assets/SCHNEIDER ELECTRIC.png";
+import schneider from "../assets/omron.png";
 import rockwell from "../assets/ROCKWELL AUTOMATION.png";
-import honeywell from "../assets/HONET WELL.png";
-import emerson from "../assets/EMERSON.png";
-import mitsubishi from "../assets/MITSBISHI.png";
+// import honeywell from "../assets/HONET WELL.png";
+import mitsubishi from "../assets/mistbushi.png";
 import bosch from "../assets/BOSCH.png";
 
 
@@ -129,7 +128,7 @@ const Home = () => {
             Top Tech and Industrial Automation Companies
           </p>
            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
-  {["Siemens", "ABB", "Schneider Electric", "Rockwell Automation", "Honeywell", "Emerson", "Mitsubishi", "Bosch"].map((company) => (
+  {["Siemens", "ABB", "Schneider Electric", "Rockwell Automation","Emerson", "Mitsubishi", "Bosch"].map((company) => (
     <div key={company} className="text-center">
       <div className="h-32 w-40 flex items-center justify-center cursor-pointer group">
         <img
@@ -138,8 +137,6 @@ const Home = () => {
             company === "ABB" ? abb :
             company === "Schneider Electric" ? schneider :
             company === "Rockwell Automation" ? rockwell :
-            company === "Honeywell" ? honeywell :
-            company === "Emerson" ? emerson :
             company === "Mitsubishi" ? mitsubishi : bosch
           }
           alt={`${company} Logo`}
@@ -154,7 +151,7 @@ const Home = () => {
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-b from-secondary to-background">
+      {/* <section className="py-20 bg-gradient-to-b from-secondary to-background">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-foreground mb-12">
             Success Stories
@@ -177,7 +174,7 @@ const Home = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Why Choose Us */}
       <section className="py-20 bg-primary text-primary-foreground">
@@ -203,8 +200,8 @@ const Home = () => {
             <div className="flex items-start space-x-3">
               <ChevronRight className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
               <div>
-                <h3 className="font-semibold text-lg mb-2">Patented Methodology</h3>
-                <p className="text-primary-foreground/80">Unique problem-solving approach developed through years of research</p>
+                <h3 className="font-semibold text-lg mb-2">Innovative teaching</h3>
+                <p className="text-primary-foreground/80">Unique problem-solving approach developed through research</p>
               </div>
             </div>
             <div className="flex items-start space-x-3">
